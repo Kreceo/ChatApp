@@ -70,7 +70,7 @@ export default class Chat extends Component {
             {/* Chat box */}
             <div className="d-flex flex-column chat-area" id="scroller">
               {this.state.chats.map(chat => {
-                return <div className={"chat-bubble my-1 " + (this.state.user.uid === chat.uid ? "current-user" : "")}><p key={chat.timestamp}>
+                return <div className={"chat-bubble my-1 " + (this.state.user.uid === chat.uid ? "current-user" : "friend")}><p key={chat.timestamp}>
                 {chat.content}
                 <br/>
                 <span className="chat-time float-right">{this.formatTime(chat.timestamp)}</span>
@@ -86,7 +86,7 @@ export default class Chat extends Component {
             <form onSubmit={this.handleSubmit} className="d-flex chat-box">
               <input onChange={this.handleChange} value={this.state.content} className="form-control w-100"></input>
               {this.state.error ? <p>{this.state.writeError}</p> : null}
-              <button type="submit" className="btn btn-primary">Send</button>
+              <button type="submit" className="btn btn-primary chat-btn"><i class="fas fa-angle-double-right"></i></button>
             </form>
 
 
