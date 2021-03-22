@@ -5,14 +5,15 @@ body {
   background-color: #fcfcfc;
 }
 
-.chat-area, .home {
+header {
   margin-top: 60px;
 }
 
 .chat-area {
   padding: 20px;
-  height: 81vh;
+  height: 100%;
   overflow-y: scroll;
+  margin-bottom: 75px;
 }
 
 .chat-area .chat-bubble {
@@ -22,6 +23,26 @@ body {
   max-width: 300px;
   word-wrap: break-word;
   overflow-anchor: none;
+}
+
+.chat-area .chat-bubble.current-user:after {
+  content: '';
+  position: absolute;
+  visibility: visible;
+  top: 0px;
+  right: -10px;
+  border: 10px solid transparent;
+  border-top: 10px solid #25D366;
+}
+
+.chat-area .chat-bubble.friend:after {
+  content: '';
+  position: absolute;
+  visibility: visible;
+  top: 0px;
+  left: -10px;
+  border: 10px solid transparent;
+  border-top: 10px solid #bbdefb;
 }
 
 .chat-bubble .chat-time {
@@ -34,6 +55,11 @@ body {
   margin-left: auto;
   background-color: #25D366;
   color: #fff;
+  position: relative;
+}
+
+.chat-area .chat-bubble.friend{
+  position: relative;
 }
 
 .form-control {
@@ -48,10 +74,6 @@ body {
   margin-top: 10px;
 }
 
-.btn-submit {
-  background-color: #2e7d32;
-  color: white;
-}
 
 @media screen and (max-width: 767px) {
   .form-control {
@@ -72,13 +94,35 @@ body {
   height: 100vh;
 }
 
+.width90 {
+  width: 90%;
+}
+
 .chat-box {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   padding-bottom: 50px;
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
+  background-color: #fff;
+  padding-top: 10px;
+  box-shadow: 0px -4px 0px -2px #eeeeee;
+  border-radius: 20px;
+}
+
+.chat-btn {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    background-color: transparent;
+    color: #25D366;
+    border: none;
+}
+
+.chat-btn:hover {
+  background-color: transparent;
+  color: #25D366;
 }
 
 /* Overrides */
@@ -86,8 +130,12 @@ body {
   margin-top: 0px;
 }
 
+.form-control {
+  border-radius: 1.25rem;
+}
+
 footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
   pointer-events: none;

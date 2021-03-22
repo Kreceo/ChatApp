@@ -51,7 +51,7 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="d-flex full-height justify-content-center align-items-center">
+      <div className="d-flex full-height justify-content-center align-items-center width90 m-auto">
         <div className="p-4 shadow p-3 mb-5 bg-white rounded">
          <form autoComplete="off" onSubmit={this.handleSubmit}>
           <h1>Sign up to 
