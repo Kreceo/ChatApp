@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 export default class HomePage extends Component {
   render() {
     return (
-      <div className="home">
-        <Header/>
-        <section>
-          <div className="jumbotron jumbotron-fluid py-5">
-            <div className="container text-center py-5">
-              <h1 className="display-4">Welcome to Chit Chat</h1>
-              <p className="lead">A great place to share your thoughts with friends</p>
-              <div className="mt-4">
-                <Link className="btn btn-primary px-5 mr-3" to="/signup">Create New Account</Link>
-                <Link className="btn px-5" to="/login">Login to Your Account</Link>
-              </div>
+      <div className="body-bg" style={{ backgroundImage: "url(/images/bg-test.jpg)" }}>
+        <section className="d-flex full-height justify-content-center align-items-center width90 m-auto align-items">
+          <div className="card w-100">
+            <img src='/images/message-bubble.jpg' alt="Man holding Phone" className="rounded"/>
+            <div className="card-body d-flex flex-column align-items-center">
+              <h5 className="card-title">Connect Together</h5>
+              <p className="card-text">Chit Chat to your heart content!</p>
+              <Link to="/SignUp" className="btn btn-primary rounded-btn p-3 w-100">Get Started</Link>
+              <Link to="/login" className="p-3">Log in</Link>
             </div>
           </div>
         </section>

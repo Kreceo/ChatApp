@@ -51,12 +51,10 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="d-flex full-height justify-content-center align-items-center width90 m-auto">
+      <div className="body-bg" style={{ backgroundImage: "url(/images/bg-test.jpg)" }}>
+      <section className="d-flex full-height justify-content-center align-items-center width90 m-auto">
         <div className="p-4 shadow p-3 mb-5 bg-white rounded">
          <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <h1>Sign up to 
-              <Link to="/"> ChitChat </Link>
-          </h1>
           <p>Fill in the form below to create your account.</p>
           <div className="mb-3">
             <input placeholder="Email Address" name="email" type="email" className="form-control w-100" onChange={this.handleChange} value={this.state.email}></input>
@@ -68,16 +66,18 @@ export default class SignUp extends Component {
             {this.state.error ? (
               <p>{this.state.error}</p>
             ) : null}
-            <button type="submit" className="btn btn-primary mb-2">Create account</button>
+            <button type="submit" className="btn btn-primary mb-2 rounded-btn w-100">Create account</button>
           </div>
           <hr />
-          <p>You can also log in with any of these services</p>
-          <button className="btn btn-info w-100 mb-2" type="button" onClick={this.googleSignIn}>
-            Sign up with Google
-          </button>
-          <button className="btn btn-secondary w-100" type="button" onClick={this.githubSignIn}>
-            Sign up with GitHub
-          </button>
+          <p>You can also sign up with any of these services</p>
+          <div className="d-flex justify-content-around">
+            <button className="btn btn-info mb-2 btn-circle" type="button" onClick={this.googleSignIn}>
+              <i className="fab fa-google"></i>
+            </button>
+            <button className="btn btn-secondary mb-2 btn-circle " type="button" onClick={this.githubSignIn}>
+              <i className="fab fa-github"></i>
+            </button>
+          </div>
           <hr />
           <p>
               Already registered? 
@@ -85,6 +85,7 @@ export default class SignUp extends Component {
           </p>
         </form>
         </div>
+      </section>
       </div>
     )
   }
