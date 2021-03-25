@@ -5,8 +5,19 @@ body {
   background-color: #fcfcfc;
 }
 
+.body-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 header {
   margin-top: 60px;
+}
+
+.navbar img {
+  width: 40px;
+  border-radius: 100%;
 }
 
 .chat-area {
@@ -17,12 +28,13 @@ header {
 }
 
 .chat-area .chat-bubble {
-  background-color: #bbdefb;
+  background-color: #6a9eef;
   padding: 20px;
   border-radius: 4px;
   max-width: 300px;
   word-wrap: break-word;
   overflow-anchor: none;
+  color: #fff;
 }
 
 .chat-area .chat-bubble.current-user:after {
@@ -32,7 +44,7 @@ header {
   top: 0px;
   right: -10px;
   border: 10px solid transparent;
-  border-top: 10px solid #25D366;
+  border-top: 10px solid #f99847;
 }
 
 .chat-area .chat-bubble.friend:after {
@@ -42,7 +54,7 @@ header {
   top: 0px;
   left: -10px;
   border: 10px solid transparent;
-  border-top: 10px solid #bbdefb;
+  border-top: 10px solid #6a9eef;
 }
 
 .chat-bubble .chat-time {
@@ -53,7 +65,7 @@ header {
 
 .chat-area .chat-bubble.current-user {
   margin-left: auto;
-  background-color: #25D366;
+  background-color: #f99847;
   color: #fff;
   position: relative;
 }
@@ -112,12 +124,14 @@ header {
 }
 
 .chat-btn {
-    position: absolute;
-    right: 0;
-    margin-right: 20px;
-    background-color: transparent;
-    color: #25D366;
-    border: none;
+  position: absolute;
+  right: 0;
+  margin-right: 40px;
+  background-color: transparent;
+  color: #25D366;
+  border: none;
+  padding: 8px;
+  font-size: 20px;
 }
 
 .chat-btn:hover {
@@ -125,13 +139,62 @@ header {
   color: #25D366;
 }
 
+.chat-online {
+  color: #34ce57
+}
+
+.chat-offline {
+  color: #e4606d
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  max-height: 600px;
+  overflow-y: scroll
+}
+
+.chat-message-left,
+.chat-message-right {
+  display: flex;
+  flex-shrink: 0
+}
+
+.chat-message-left {
+  margin-right: auto
+}
+
+.chat-message-right {
+  flex-direction: row-reverse;
+  margin-left: auto
+}
+/* .py-3 {
+  padding-top: 1rem!important;
+  padding-bottom: 1rem!important;
+}
+.px-4 {
+  padding-right: 1.5rem!important;
+  padding-left: 1.5rem!important;
+} */
+.flex-grow-0 {
+  flex-grow: 0!important;
+}
+.border-top {
+  border-top: 1px solid #dee2e6!important;
+}
+
 /* Overrides */
 .btn {
   margin-top: 0px;
 }
 
+.btn-round {
+  border-radius: 30px;
+}
+
 .form-control {
-  border-radius: 1.25rem;
+  border-radius: 30px;
+  padding: 10px;
 }
 
 footer {
@@ -139,4 +202,25 @@ footer {
   width: 100%;
   bottom: 0;
   pointer-events: none;
+}
+
+.card {
+  max-width: 420px;
+  border-radius: 20px;
+}
+
+.rounded {
+  border-radius: 20px !important;
+}
+
+.rounded-btn {
+  border-radius: 30px !important;
+  max-width: 265px;
+  padding: 12px;
+}
+
+.btn-circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
 }
