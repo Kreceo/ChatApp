@@ -1,6 +1,54 @@
 import React, { Component } from 'react';
+import firebase from "firebase/app";
 import { Link } from 'react-router-dom';
-import { signup, signInWithGoogle, signInWithGitHub } from '../helpers/auth';
+import { signInWithGoogle, signInWithGitHub } from '../helpers/auth';
+// import { auth, firestore } from "../services/firebase";
+
+
+// function signup(email, password) {
+//   return auth().createUserWithEmailAndPassword(email, password)
+//   .then((userCredentials)=>{
+//     if(userCredentials.user){
+//       userCredentials.user.updateProfile({
+//         // Update this, and then put it into a function on profile page
+//         // By default, it will use the name form the email address
+//         displayName: userCredentials.user.email.split("@")[0],
+//         // By default, it will add a simple image
+//         photoURL: "https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/default-profile-image.jpg",
+//       })
+//     }
+// })
+// };
+
+const usersRef = firebase
+.firestore()
+.collection('users');
+
+function signup(email, password) {
+firebase
+  .auth().createUserWithEmailAndPassword(email, password)
+  // if(userCredentials.user){
+  //   userCredentials.user.updateProfile({
+  //     // Update this, and then put it into a function on profile page
+  //     // By default, it will use the name form the email address
+  //     displayName: userCredentials.user.email.split("@")[0],
+  //     // By default, it will add a simple image
+  //     photoURL: "https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/default-profile-image.jpg",
+  //   })
+  // }
+  .then(function(userCredentials) {
+    usersRef
+      .doc(`${userCredentials.user.uid}`)
+      .set({
+        // Set these up at a later date
+        // firstName: values.firstName,
+        // lastName: values.lastName,
+        username: userCredentials.user.email.split("@")[0],
+        uid: userCredentials.user.uid,
+        photoURL: "https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/default-profile-image.jpg",
+      })
+    })
+}
 
 export default class SignUp extends Component {
  
@@ -22,6 +70,8 @@ export default class SignUp extends Component {
         [event.target.name]: event.target.value
         });
     }
+
+    
 
     async handleSubmit(event) {
         event.preventDefault();
@@ -51,7 +101,7 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="body-bg" style={{ backgroundImage: "url(/images/bg-test.jpg)" }}>
+      <div className="body-bg" style={{ backgroundImage: "url(https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/bg-test.jpg)" }}>
       <section className="d-flex full-height justify-content-center align-items-center width90 m-auto">
         <div className="p-4 shadow p-3 mb-5 bg-white rounded">
          <form autoComplete="off" onSubmit={this.handleSubmit}>
