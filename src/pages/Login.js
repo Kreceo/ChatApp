@@ -50,7 +50,7 @@ export default class Login extends Component {
   
   render() {
     return (
-      <div className="body-bg" style={{ backgroundImage: "url(/images/bg-test.jpg)" }}>
+      <div className="body-bg" style={{ backgroundImage: "url(https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/bg-test.jpg)" }}>
         <section className="d-flex full-height justify-content-center align-items-center width90 m-auto">
           <div className="p-4 shadow p-3 mb-5 bg-white rounded">
           <form autoComplete="off" onSubmit={this.handleSubmit}>
