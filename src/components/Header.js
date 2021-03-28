@@ -1,4 +1,4 @@
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../services/firebase';
@@ -7,9 +7,9 @@ function Header() {
   return (
     <header>
       <nav className="navbar navbar-expand-sm fixed-top navbar-light bg-light">
-        <Link to="/dashboard">
-          <img src={auth().currentUser.photoURL} className="pr-2" />
-          <span>{auth().currentUser.displayName}</span>
+        <Link to="/settings">
+          <img src={auth().currentUser.photoURL} className="profile-photo" alt=""/>
+          <span className="pl-2">{auth().currentUser.displayName}</span>
         </Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
