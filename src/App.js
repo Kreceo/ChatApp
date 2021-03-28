@@ -6,10 +6,11 @@ import {
   Redirect,
 } from "react-router-dom";
 import Home from './pages/Home';
-import Chat from './pages/Chat';
+import Messages from './pages/Messages';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+import Dashboard from './pages/Dashboard';
 import { auth } from './services/firebase';
 import './styles.css';
 
@@ -38,7 +39,7 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
         authenticated === false ? (
           <Component {...props} />
         ) : (
-            <Redirect to="/chat" />
+            <Redirect to="/messages" />
           )
       }
     />
@@ -76,8 +77,9 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home}></Route>
-          <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
-          <PrivateRoute path="/profile" authenticated={this.state.authenticated} component={Profile}></PrivateRoute>
+          <PrivateRoute path="/messages" authenticated={this.state.authenticated} component={Messages}></PrivateRoute>
+          <PrivateRoute path="/settings" authenticated={this.state.authenticated} component={Settings}></PrivateRoute>
+          <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
           <PublicRoute path="/login" authenticated={this.state.authenticated} component={Login}></PublicRoute>
         </Switch>
