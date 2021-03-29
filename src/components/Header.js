@@ -2,15 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../services/firebase';
+import Profile from '../components/Profile';
 
 function Header() {
   return (
     <header>
       <nav className="navbar navbar-expand-sm fixed-top navbar-light bg-light">
-        <Link to="/settings">
-          <img src={auth().currentUser.photoURL} className="profile-photo" alt=""/>
-          <span className="pl-2">{auth().currentUser.displayName}</span>
-        </Link>
+        <Profile />
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
