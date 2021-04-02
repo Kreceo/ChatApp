@@ -6,13 +6,13 @@ import {
   Redirect,
 } from "react-router-dom";
 import Home from './pages/Home';
-import Messages from './pages/Messages';
+import Chat from './pages/Chat';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
 import Dashboard from './pages/Dashboard';
 import { auth } from './services/firebase';
-import './styles.css';
+import './sass/styles.scss';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -77,7 +77,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home}></Route>
-          <PrivateRoute path="/messages" authenticated={this.state.authenticated} component={Messages}></PrivateRoute>
+          <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
           <PrivateRoute path="/settings" authenticated={this.state.authenticated} component={Settings}></PrivateRoute>
           <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
