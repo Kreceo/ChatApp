@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+@import "./base/_overrides";
+
+@import "./layout/_header";
+@import "./layout/_sidebar";
+@import "./layout/_footer";
+@import "./layout/_settings";
+
+@import "./component/_chat";
+@import "./component/_auth";
+@import "./component/_buttons";
+
+#root {
+  height: 100%;
+}
+
+html, body{min-height:100%;}
+body{height:100vh;}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fcfcfc;
+}

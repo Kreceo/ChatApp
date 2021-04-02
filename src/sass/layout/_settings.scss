@@ -1,0 +1,47 @@
+.settings {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__container {
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+    }
+
+    &__card {
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: 20px;
+        transition-duration: 0.3s;
+        border-radius: 20px;
+        width: 100%;
+        margin: 15px;
+
+        &:hover {
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+        }
+    }
+
+    &__profile {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+        justify-content: center;
+        height: 100%;
+
+        img {
+            max-width: 150px;
+            margin-bottom: 20px;
+            border-radius: 100%;
+        }
+    }
+
+    &__form {
+        padding: 20px;
+    }
+}

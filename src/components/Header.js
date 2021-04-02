@@ -13,10 +13,10 @@ function Header() {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           {auth().currentUser
             ? <div className="navbar-nav">
-              <Link className="nav-item nav-link mr-3" to="/dashboard">Dashboard</Link>
+              {/* <Link className="nav-item nav-link mr-3" to="/dashboard">Dashboard</Link> */}
               <Link className="nav-item nav-link mr-3" to="/chat">Chat</Link>
-              <Link className="nav-item nav-link mr-3" to="/settings">Settings</Link>
-              <button className="btn btn-primary mr-1" onClick={() => auth().signOut()}>Logout</button>
+              <Link className="nav-item nav-link mr-3" to="/settings"><i class="fas fa-cog"></i></Link>
+              <button className="btn btn-primary mr-1" onClick={() => auth().signOut()}>Logout <i class="fas fa-sign-out-alt"></i></button>
             </div>
             : <div className="navbar-nav">
               <Link className="nav-item nav-link mr-3" to="/signup">Create account</Link>
