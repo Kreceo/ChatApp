@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { auth } from "../services/firebase";
+import PrimaryButton from '../components/PrimaryButton';
 
 export default class HomePage extends Component {
 
@@ -26,78 +27,44 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <div className="d-flex h-100">
+      <>
         <Header/>
-        <section className="d-flex full-height justify-content-center align-items-center width90 m-auto">
-          <div className="profile-container">
+        <section className="settings">
+
           <h2>Profile Information</h2>
           <h4>Update / add your information below:</h4>
           <hr/>
-            <div className="row">
-              <div className="col-md-4 mb-3">
-                <div className="card h-100 mw-100 border-shadow">
-                  <div className="card-body">
-                    <div className="d-flex flex-column align-items-center text-center">
-                      <img src={this.state.user.photoURL} alt="Admin" className="rounded-circle" width="150" />
-                      <div className="mt-3">
-                        <h4>{this.state.user.displayName}</h4>
-                      </div>
-                    </div>
-                  </div>
+
+          <div className="settings__container">
+            <div className="settings__card">
+                <div className="settings__profile">
+                  <img src={this.state.user.photoURL}/>
+                  <h4>{this.state.user.displayName}</h4>
+                  <p>This will be a bio at some point. So for now, here is some random text.</p>
                 </div>
-              </div>
-              <div className="col-md-8">
-                <div className="card mb-3 mw-100">
-                <form onSubmit={this.handleSubmit} className="border-shadow">
-                  <div className="card-body">
-                    <div className="align-items-center">
-                      <h6 className="pt-2">Full Name</h6>
-                      <input
-                        type="text"
-                        className="form-control w-100"
-                        name="name"
-                        defaultValue={this.state.user.displayName}
-                        onChange={this.handleChange}
-                        ref={(input) => this.input = input}
-                      />
-                    </div>
-                    <hr/>
-                    <div className="align-items-center">
-                      <h6 className="pt-2">Username</h6>
-                      <input
-                        type="text"
-                        className="form-control w-100"
-                        name="username"
-                        defaultValue={this.state.user.displayName}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <h3>{this.state.username}</h3>
-                    <hr/>
-                    <div className="align-items-center">
-                      <h6 className="pt-2">Email</h6>
-                      <input
-                        type="email"
-                        className="form-control w-100"
-                        name="email"
-                        defaultValue={this.state.user.email}
-                        onChange={this.handleChange}
-                        ref={(input) => this.input = input}
-                      />
-                    </div>
-                    <h3>{this.state.email}</h3>
-                  </div>
-                  <div className="card-body">
-                    <button type="submit" className="btn btn-primary">Update details</button>
-                  </div>
-                  </form>
-                </div>
+            </div>
+        
+            <div className="settings__card">
+              <div className="settings__form">
+                <form onSubmit={this.handleSubmit}>
+                  <h6 className="pt-2">Full Name</h6>
+                  <input type="text" className="form-control" name="name" defaultValue={this.state.user.displayName} onChange={this.handleChange} ref={(input) => this.input = input} />
+                  <hr/>
+                  <h6 className="pt-2">Username</h6>
+                  <input type="text" className="form-control" name="username" defaultValue={this.state.user.displayName} onChange={this.handleChange} />                 
+                  <h3>{this.state.username}</h3>
+                  <hr/>
+                  <h6 className="pt-2">Email</h6>
+                  <input type="email" className="form-control w-100" name="email" defaultValue={this.state.user.email} onChange={this.handleChange} ref={(input) => this.input = input} />
+                  <h3>{this.state.email}</h3>
+                  <PrimaryButton type="submit" title="Update details"/>
+                </form>
               </div>
             </div>
           </div>
         </section>
         <Footer/>
-      </div>
+      </>
     )
   }
 }

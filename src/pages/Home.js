@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
+import PrimaryButton from '../components/PrimaryButton';
 
 export default class HomePage extends Component {
   render() {
@@ -12,7 +13,9 @@ export default class HomePage extends Component {
             <div className="card-body d-flex flex-column align-items-center">
               <h5 className="card-title">Connect Together</h5>
               <p className="card-text">Chit Chat to your heart content!</p>
-              <Link to="/SignUp" className="btn btn-primary rounded-btn p-3 w-100">Get Started</Link>
+              <Link to="/Signup">
+                <PrimaryButton title="Get Started"/>
+              </Link>
               <Link to="/login" className="p-3">Log in</Link>
             </div>
           </div>

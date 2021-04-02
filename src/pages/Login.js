@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signin, signInWithGoogle, signInWithGitHub } from "../helpers/auth";
+import PrimaryButton from '../components/PrimaryButton';
 
 export default class Login extends Component {
   constructor() {
@@ -65,8 +66,9 @@ export default class Login extends Component {
               {this.state.error ? (
                 <p>{this.state.error}</p>
               ) : null}
-              <button type="submit" className="btn btn-primary mb-2 rounded-btn w-100">Log in</button>
+              <PrimaryButton title="Log in" type="submit"/>
             </div>
+           
             <hr />
             <p>You can also log in with any of these services</p>
             <div className="d-flex justify-content-around">
@@ -82,7 +84,7 @@ export default class Login extends Component {
               Don't have an account? 
               <Link to="/signup"> Sign up</Link>
             </p>
-          </form>
+            </form>
           </div>
         </section>
       </div>

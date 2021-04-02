@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import firebase from "firebase/app";
 import { Link } from 'react-router-dom';
-import { signInWithGoogle, signInWithGitHub } from '../helpers/auth';
+import { signInWithGitHub } from '../helpers/auth';
 // import { auth, firestore } from "../services/firebase";
+import PrimaryButton from '../components/PrimaryButton';
+import { auth } from "../services/firebase";
 
 
 // function signup(email, password) {
@@ -23,6 +25,23 @@ import { signInWithGoogle, signInWithGitHub } from '../helpers/auth';
 const usersRef = firebase
 .firestore()
 .collection('users');
+
+function signInWithGoogle() {
+  const provider = new auth.GoogleAuthProvider();
+  return auth().signInWithPopup(provider)
+  .then(function(userCredentials) {
+    usersRef
+      .doc(`${userCredentials.user.uid}`)
+      .set({
+        // Set these up at a later date
+        // firstName: values.firstName,
+        // lastName: values.lastName,
+        username: userCredentials.user.email.split("@")[0],
+        uid: userCredentials.user.uid,
+        photoURL: userCredentials.user.photoURL,
+      })
+    })
+}
 
 function signup(email, password) {
 firebase
@@ -74,14 +93,15 @@ export default class SignUp extends Component {
     
 
     async handleSubmit(event) {
-        event.preventDefault();
-        this.setState({ error: '' });
-        try {
+      event.preventDefault();
+      this.setState({ error: "" });
+      try {
         await signup(this.state.email, this.state.password);
-        } catch (error) {
-            this.setState({ error: error.message });
-        }
+      } catch (error) {
+        this.setState({ error: error.message });
+      }
     }
+  
 
     async googleSignIn() {
         try {
@@ -113,11 +133,12 @@ export default class SignUp extends Component {
             <input placeholder="Password" name="password" className="form-control w-100" onChange={this.handleChange} value={this.state.password} type="password"></input>
           </div>
           <div>
-            {this.state.error ? (
-              <p>{this.state.error}</p>
-            ) : null}
-            <button type="submit" className="btn btn-primary mb-2 rounded-btn w-100">Create account</button>
+          {this.state.error ? (
+            <p>{this.state.error}</p>
+          ) : null}
+           <PrimaryButton title="Create account" type="submit"/>
           </div>
+
           <hr />
           <p>You can also sign up with any of these services</p>
           <div className="d-flex justify-content-around">
@@ -133,7 +154,7 @@ export default class SignUp extends Component {
               Already registered? 
             <Link to="/login"> Login</Link>
           </p>
-        </form>
+          </form>
         </div>
       </section>
       </div>
