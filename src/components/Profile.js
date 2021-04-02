@@ -3,7 +3,7 @@ import { auth } from '../services/firebase';
 
 const ProfileCard = () => {
     return (
-        <a className="list-group-item list-group-item-action border-0">
+        <a className="d-flex align-items-center p-3">
             <div className="d-flex align-items-start">
                 <Avatar/>
                 <div className="d-flex flex-column">

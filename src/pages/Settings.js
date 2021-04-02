@@ -29,7 +29,7 @@ export default class HomePage extends Component {
       <div className="d-flex h-100">
         <Header/>
         <section className="d-flex full-height justify-content-center align-items-center width90 m-auto">
-          <div className="profile-container">
+          <div className="settings__container">
           <h2>Profile Information</h2>
           <h4>Update / add your information below:</h4>
           <hr/>
