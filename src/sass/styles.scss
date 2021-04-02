@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-
 @import "./base/_overrides";
+@import "./base/_typography";
 
 @import "./layout/_header";
 @import "./layout/_sidebar";
@@ -20,5 +19,4 @@ body{height:100vh;}
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fcfcfc;
 }

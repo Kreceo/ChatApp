@@ -39,13 +39,12 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
         authenticated === false ? (
           <Component {...props} />
         ) : (
-            <Redirect to="/messages" />
+            <Redirect to="/chat" />
           )
       }
     />
   );
 }
-
 
 class App extends Component {
   constructor() {
@@ -87,6 +86,5 @@ class App extends Component {
     )
   }
 }
-
 
 export default App;
