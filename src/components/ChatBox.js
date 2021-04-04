@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import firebase from "firebase/app";
 import { db } from "../services/firebase";
 
+const usersRef = firebase
+.firestore()
+.collection('users');
+
 class ChatBox extends Component {
 
     constructor(props) {
@@ -12,7 +16,7 @@ class ChatBox extends Component {
         content:  '',
         readError: null,
         writeError: null,
-        username: '',
+        usersInfo: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,18 +36,30 @@ class ChatBox extends Component {
         } catch (error) {
         this.setState({ readError: error.message });
         }
+         // Queries the database and returns the data, and mounts the function into the component for it to be used.
+         usersRef
+         .get()
+         .then(querySnapshot => {
+         const data = querySnapshot.docs.map(doc => doc.data());
+         this.setState({ usersInfo: data });
+         });
     }
 
     async handleSubmit(event) {
         event.preventDefault();
         this.setState({ writeError: null });
         try {
-          await db.ref("chats").push({
-            content: this.state.content,
-            timestamp: Date.now(),
-            uid: this.state.user.uid,
-          });
-          this.setState({ content: '' });
+          if (this.state.content === "") {
+            console.log('Type something');
+          } else {
+            await db.ref("chats").push({
+              content: this.state.content,
+              timestamp: Date.now(),
+              uid: this.state.user.uid,
+            });
+            this.setState({ content: '' });
+          }
+       
         } catch (error) {
           this.setState({ writeError: error.message });
         }
@@ -72,7 +88,12 @@ class ChatBox extends Component {
                 return <div className={"chatBox__messages--" + (this.state.user.uid === chat.uid ? "right" : "left")}>
                   <p key={chat.timestamp}></p>
                   <div>
-                    <img src={this.state.user.photoURL}/>
+                  {this.state.usersInfo.map(userInfo => {
+                    return (
+                    <img src={userInfo.photoURL == this.state.user.photoURL ? userInfo.photoURL : ''} alt=""/>
+                    )
+                  })
+                  }
                     <div className="chatBox__timestamp">
                       {this.formatTime(chat.timestamp)}
                     </div>
@@ -80,6 +101,7 @@ class ChatBox extends Component {
  
                   <div className={"chatBox__message-text chatBox__messages--" + (this.state.user.uid === chat.uid ? "green" : "blue")}>
                     {chat.content}
+                    
                   </div>
                 </div>
                 })}
