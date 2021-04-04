@@ -55,6 +55,9 @@
   &__form {
     display: flex;
     padding: 10px;
+    // @media screen and (max-width: 768px) {
+    //   margin-top: -15px;
+    // }
   }
 
   &__button {

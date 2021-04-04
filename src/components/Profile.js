@@ -3,7 +3,7 @@ import { auth } from '../services/firebase';
 
 const ProfileCard = () => {
     return (
-        <a className="d-flex align-items-center p-3">
+        <a className="d-flex align-items-center p-3" href="/settings">
             <div className="d-flex align-items-start">
                 <Avatar/>
                 <div className="d-flex flex-column">
@@ -17,7 +17,7 @@ const ProfileCard = () => {
 
 const Avatar = () => {
     return (
-        <img src={auth().currentUser.photoURL} className="profile-photo"/>
+        <img src={auth().currentUser.photoURL} className="profile-photo" alt=""/>
     )
 }
 

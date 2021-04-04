@@ -34,9 +34,9 @@ class Sidebar extends Component {
                 <div className="sideBar__scroll">
                 {this.state.usersInfo.map(userInfo => {
                     return (
-                    <a href="#">
-                        <div className="d-flex align-items-center p-3">
-                            <img src={userInfo.photoURL}/>
+                    <a href="javascript:void(0)">
+                        <div className="sideBar__card">
+                            <img src={userInfo.photoURL} alt=""/>
                             <span className="pl-2">{userInfo.username}</span>
                         </div>
                     </a>
