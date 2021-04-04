@@ -1,73 +1,7 @@
 import React, { Component } from 'react';
-import firebase from "firebase/app";
 import { Link } from 'react-router-dom';
-import { signInWithGitHub } from '../helpers/auth';
-// import { auth, firestore } from "../services/firebase";
+import { signInWithGitHub, signup, signInWithGoogle } from '../helpers/auth';
 import PrimaryButton from '../components/PrimaryButton';
-import { auth } from "../services/firebase";
-
-
-// function signup(email, password) {
-//   return auth().createUserWithEmailAndPassword(email, password)
-//   .then((userCredentials)=>{
-//     if(userCredentials.user){
-//       userCredentials.user.updateProfile({
-//         // Update this, and then put it into a function on profile page
-//         // By default, it will use the name form the email address
-//         displayName: userCredentials.user.email.split("@")[0],
-//         // By default, it will add a simple image
-//         photoURL: "https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/default-profile-image.jpg",
-//       })
-//     }
-// })
-// };
-
-const usersRef = firebase
-.firestore()
-.collection('users');
-
-function signInWithGoogle() {
-  const provider = new auth.GoogleAuthProvider();
-  return auth().signInWithPopup(provider)
-  .then(function(userCredentials) {
-    usersRef
-      .doc(`${userCredentials.user.uid}`)
-      .set({
-        // Set these up at a later date
-        // firstName: values.firstName,
-        // lastName: values.lastName,
-        username: userCredentials.user.email.split("@")[0],
-        uid: userCredentials.user.uid,
-        photoURL: userCredentials.user.photoURL,
-      })
-    })
-}
-
-function signup(email, password) {
-firebase
-  .auth().createUserWithEmailAndPassword(email, password)
-  // if(userCredentials.user){
-  //   userCredentials.user.updateProfile({
-  //     // Update this, and then put it into a function on profile page
-  //     // By default, it will use the name form the email address
-  //     displayName: userCredentials.user.email.split("@")[0],
-  //     // By default, it will add a simple image
-  //     photoURL: "https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/default-profile-image.jpg",
-  //   })
-  // }
-  .then(function(userCredentials) {
-    usersRef
-      .doc(`${userCredentials.user.uid}`)
-      .set({
-        // Set these up at a later date
-        // firstName: values.firstName,
-        // lastName: values.lastName,
-        username: userCredentials.user.email.split("@")[0],
-        uid: userCredentials.user.uid,
-        photoURL: "https://kreceo.sfo2.digitaloceanspaces.com/ChatApp/ChatApp/default-profile-image.jpg",
-      })
-    })
-}
 
 export default class SignUp extends Component {
  
