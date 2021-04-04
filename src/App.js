@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import Chat from './pages/Chat';
+import LiveChat from './pages/LiveChat';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Settings from './pages/Settings';
@@ -77,6 +78,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <PrivateRoute path="/chat" authenticated={this.state.authenticated} component={Chat}></PrivateRoute>
+          <PrivateRoute path="/livechat" authenticated={this.state.authenticated} component={LiveChat}></PrivateRoute>
           <PrivateRoute path="/settings" authenticated={this.state.authenticated} component={Settings}></PrivateRoute>
           <PrivateRoute path="/dashboard" authenticated={this.state.authenticated} component={Dashboard}></PrivateRoute>
           <PublicRoute path="/signup" authenticated={this.state.authenticated} component={Signup}></PublicRoute>
