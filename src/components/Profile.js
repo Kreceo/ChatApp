@@ -5,7 +5,7 @@ const ProfileCard = () => {
     return (
         <a className="d-flex align-items-center p-3" href="/settings">
             <div className="d-flex align-items-start">
-                <Avatar/>
+                <Avatar img={auth().currentUser.photoURL}/>
                 <div className="d-flex flex-column">
                     <Username/>
                     <OnlineStatus/>
@@ -15,9 +15,9 @@ const ProfileCard = () => {
     )
 }
 
-const Avatar = () => {
+export const Avatar = ({img}) => {
     return (
-        <img src={auth().currentUser.photoURL} className="profile-photo" alt=""/>
+        <img src={img} className="profile-photo" alt=""/>
     )
 }
 

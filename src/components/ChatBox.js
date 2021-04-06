@@ -88,12 +88,9 @@ class ChatBox extends Component {
                 return <div className={"chatBox__messages--" + (this.state.user.uid === chat.uid ? "right" : "left")}>
                   <p key={chat.timestamp}></p>
                   <div>
-                  {this.state.usersInfo.map(userInfo => {
-                    return (
-                    <img src={userInfo.photoURL == this.state.user.photoURL ? userInfo.photoURL : ''} alt=""/>
-                    )
-                  })
-                  }
+                    
+                  {this.state.usersInfo.filter(userInfo => userInfo.photoURL === this.state.user.uid)}
+                    
                     <div className="chatBox__timestamp">
                       {this.formatTime(chat.timestamp)}
                     </div>
@@ -101,7 +98,6 @@ class ChatBox extends Component {
  
                   <div className={"chatBox__message-text chatBox__messages--" + (this.state.user.uid === chat.uid ? "green" : "blue")}>
                     {chat.content}
-                    
                   </div>
                 </div>
                 })}
