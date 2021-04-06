@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import firebase from "firebase/app";
 import { db } from "../services/firebase";
+import Message from "./Message";
 
-const usersRef = firebase
-.firestore()
-.collection('users');
 
 class ChatBox extends Component {
 
@@ -23,27 +21,6 @@ class ChatBox extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount() {
-        this.setState({ readError: null });
-        try {
-        db.ref("chats").on("value", snapshot => {
-            let chats = [];
-            snapshot.forEach((snap) => {
-            chats.push(snap.val());
-            });
-            this.setState({ chats });
-        });
-        } catch (error) {
-        this.setState({ readError: error.message });
-        }
-         // Queries the database and returns the data, and mounts the function into the component for it to be used.
-         usersRef
-         .get()
-         .then(querySnapshot => {
-         const data = querySnapshot.docs.map(doc => doc.data());
-         this.setState({ usersInfo: data });
-         });
-    }
 
     async handleSubmit(event) {
         event.preventDefault();
@@ -72,35 +49,12 @@ class ChatBox extends Component {
         });
     }
 
-    // Time returned for the post in a readable format
-    formatTime(timestamp) {
-        const d = new Date(timestamp);
-        const time = `${d.getHours()}:${d.getMinutes()}`;
-        return time;
-    }
-
     render() {
         return(
             <div className="chatBox">
               <div className="chatBox__container">
                 <div className="chatBox__messages px-4 py-2">
-                {this.state.chats.map(chat => {
-                return <div className={"chatBox__messages--" + (this.state.user.uid === chat.uid ? "right" : "left")}>
-                  <p key={chat.timestamp}></p>
-                  <div>
-                    
-                  {this.state.usersInfo.filter(userInfo => userInfo.photoURL === this.state.user.uid)}
-                    
-                    <div className="chatBox__timestamp">
-                      {this.formatTime(chat.timestamp)}
-                    </div>
-                  </div>
- 
-                  <div className={"chatBox__message-text chatBox__messages--" + (this.state.user.uid === chat.uid ? "green" : "blue")}>
-                    {chat.content}
-                  </div>
-                </div>
-                })}
+                  <Message/>
                 </div>
                 <form onSubmit={this.handleSubmit} className="chatBox__form">
                   <input onChange={this.handleChange} value={this.state.content}  className="form-control" id="messageInput"></input>

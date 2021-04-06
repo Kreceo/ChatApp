@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import firebase from "firebase/app";
-import Profile from '../components/Profile';
 
 const usersRef = firebase
 .firestore()
 .collection('users');
 
+// var user = firebase.auth().currentUser;
+
+// if (user != null) {
+//     console.log('all fine');
+//     }  else {
+//     document.getElementById('.hide');
+//     hide.classList.add('hide');
+// }
 class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
         user: firebase.auth().currentUser,
         usersInfo: [],
-        userPhoto: usersRef.photoURL
         };
     };
 
@@ -25,12 +31,20 @@ class Sidebar extends Component {
         this.setState({ usersInfo: data });
         });
     }
+
+    handleChange(event) {
+        this.setState({
+          content: event.target.value
+        });
+    }
+
     
     render() {
         return (
             <div className="sideBar">
-            <Profile />
+            {/* <Profile />  COME BACK TO THIS */}
             <h5 className="pl-3">Chat</h5>
+            
             <div className="sideBar__profile">
                 <div className="sideBar__scroll">
                 {this.state.usersInfo.map(userInfo => {

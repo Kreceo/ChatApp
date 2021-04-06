@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { auth } from "../services/firebase";
 import PrimaryButton from '../components/PrimaryButton';
 
@@ -12,7 +11,8 @@ export default class HomePage extends Component {
       user: auth().currentUser,
       displayName: '',
       email: '',        
-      photoURL: ''
+      photoURL: '',
+      username: '',
     };
   }
 
@@ -30,15 +30,16 @@ export default class HomePage extends Component {
       <>
         <Header/>
         <section className="settings">
-
-          <h2>Profile Information</h2>
-          <h4>Update / add your information below:</h4>
+          <div className="settings__title">
+            <h2>Profile Information</h2>
+            <h4>Update / add your information below:</h4>
+          </div>
           <hr/>
 
           <div className="settings__container">
             <div className="settings__card">
                 <div className="settings__profile">
-                  <img src={this.state.user.photoURL}/>
+                  <img src={this.state.user.photoURL} alt=""/>
                   <h4>{this.state.user.displayName}</h4>
                   <p>This will be a bio at some point. So for now, here is some random text.</p>
                 </div>
@@ -48,7 +49,7 @@ export default class HomePage extends Component {
               <div className="settings__form">
                 <form onSubmit={this.handleSubmit}>
                   <h6 className="pt-2">Full Name</h6>
-                  <input type="text" className="form-control" name="name" defaultValue={this.state.user.displayName} onChange={this.handleChange} ref={(input) => this.input = input} />
+                  <input type="text" className="form-control" name="name" id="name" defaultValue={this.state.user.displayName} onChange={this.handleChange} ref={(input) => this.input = input} />
                   <hr/>
                   <h6 className="pt-2">Username</h6>
                   <input type="text" className="form-control" name="username" defaultValue={this.state.user.displayName} onChange={this.handleChange} />                 
@@ -63,7 +64,6 @@ export default class HomePage extends Component {
             </div>
           </div>
         </section>
-        <Footer/>
       </>
     )
   }
